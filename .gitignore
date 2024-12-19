@@ -1,0 +1,39 @@
+# Compiled class file
+/target/
+
+# Logs
+/logs/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Spring Boot
+.spring-boot-starter-logging/
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Maven
+log/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.nexus
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/maven.config
+
+# Gradle
+.gradle/
+/build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

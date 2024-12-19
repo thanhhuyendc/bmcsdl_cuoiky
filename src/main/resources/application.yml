@@ -1,0 +1,65 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    excluded-user-agents:
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 2048
+
+spring:
+  datasource:
+    primary:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: PASSPORT
+      password: PASSPORT
+      driver-class-name: oracle.jdbc.OracleDriver
+    xacthuc:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: XACTHUC
+      password: XACTHUC
+      driver-class-name: oracle.jdbc.OracleDriver
+    xetduyet:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: XETDUYET
+      password: XETDUYET
+      driver-class-name: oracle.jdbc.OracleDriver
+    luutru:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: LUUTRU
+      password: LUUTRU
+      driver-class-name: oracle.jdbc.OracleDriver
+    nguoidung:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: NGUOIDUNG
+      password: NGUOIDUNG
+      driver-class-name: oracle.jdbc.OracleDriver
+    giamsat:
+      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB
+      username: GIAMSAT
+      password: GIAMSAT
+      driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 50
+      connection-timeout: 30000
+  jpa:
+    properties:
+      javax:
+        persistence:
+          query:
+            timeout: 120000
+      hibernate:
+        show_sql: true # Enable logging of SQL statements
+        format_sql: true # Format SQL statements for readability
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        ddl-auto: none
+        temp:
+          use_jdbc_metadata_defaults: false
+    jpa:
+      repositories:
+        enabled: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+

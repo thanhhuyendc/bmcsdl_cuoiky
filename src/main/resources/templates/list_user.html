@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>List user</title>
+  <link th:href="@{/css/resident.css}" rel="stylesheet" />
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Boxicons và Material Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" rel="stylesheet" />
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap Bundle (đã bao gồm Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+<body>
+<div th:replace="~{components/nav :: navbar(role=${role}, username=${username})}"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="" style="width: 120%">
+        <div class="table-responsive">
+          <table class="table project-list-table table-nowrap align-middle table-borderless">
+            <thead>
+            <tr>
+              <th scope="col">Fullname</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Email</th>
+              <th scope="col">CCCD</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Location</th>
+              <th scope="col">Authenticated</th>
+              <th scope="col">Approved</th>
+              <th scope="col">Rejected</th>
+              <th scope="col">PassportId</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${users}">
+              <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body" th:text="${item.fullName}"></a></td>
+              <td>
+                <span th:text="${item.gender}" class="badge badge-soft-info mb-0">Female</span>
+              </td>
+              <td th:text="${item.email}"></td>
+              <td th:text="${item.CCCD}"></td>
+              <td th:text="${item.phone}"></td>
+              <td th:text="${item.location.district}"></td>
+
+              <td th:text="${item.isAuthenticated}"></td>
+              <td th:text="${item.isApprove}"></td>
+              <td th:text="${item.isRejected}"></td>
+              <td th:text="${item.passport.getPassportID()}"></td>
+              <td>
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item">
+                    <a th:href="'xt-approve?role=' + ${role} + '&username=' + ${username} + '&id=' + ${item.id}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <!-- Chú ý: Sử dụng cú pháp đúng của Thymeleaf cho data-id, data-role và data-username -->
+                    <a href="javascript:void(0);" th:data-id="${item.id}" th:data-role="${role}" th:data-username="${username}" class="px-2 text-danger reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                      <i class="bx bx-trash-alt font-size-18"></i>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rejectModalLabel">Nhập ghi chú</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="rejectForm">
+            <div class="form-group">
+              <label for="noteInput">Ghi chú</label>
+              <textarea class="form-control" id="noteInput" rows="3" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary" id="submitReject">Gửi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    let selectedId = null;
+    let role = null;
+    let username = null;
+
+    // Khi nhấn vào nút Reject
+    $(".reject-btn").on("click", function () {
+      // Lấy giá trị từ các thuộc tính data của nút
+      selectedId = $(this).data("id");  // Lấy id từ data-id
+      role = $(this).data("role");  // Lấy role từ data-role
+      username = $(this).data("username");  // Lấy username từ data-username
+    });
+
+    // Khi nhấn gửi trong modal
+    $("#submitReject").on("click", function () {
+      const note = $("#noteInput").val();
+      if (!note) {
+        alert("Vui lòng nhập ghi chú!");
+        return;
+      }
+
+      // Gửi dữ liệu bằng AJAX
+      $.ajax({
+        url: "/user/xt-reject",
+        method: "POST",
+        data: {
+          role: role,
+          username: username,
+          id: selectedId,
+          note: note
+        },
+        success: function (response) {
+          alert("Đã gửi reject thành công!");
+          location.reload();
+        },
+        error: function () {
+          alert("Có lỗi xảy ra, vui lòng thử lại!");
+        }
+      });
+
+      // Đóng modal
+      $("#rejectModal").modal("hide");
+    });
+  });
+</script>
+</body>
+</html>

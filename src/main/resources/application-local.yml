@@ -1,0 +1,75 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    excluded-user-agents:
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 2048
+
+spring:
+  datasource:
+    primary:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    xacthuc:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    xacthuc1:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    xacthuc2:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    xacthuc3:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    xetduyet:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    luutru:
+      url: jdbc:postgresql://localhost:5432/local_26_12
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+    #    giam_sat:
+    #      url: jdbc:oracle:thin:@//localhost:1521/ORCLPDB.LOCALDOMAIN
+    #      username: GiamSat
+    #      pass: giamsat
+    #      driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 50
+      connection-timeout: 30000
+  jpa:
+    properties:
+      javax:
+        persistence:
+          query:
+            timeout: 120000
+      hibernate:
+        show_sql: true # Enable logging of SQL statements
+        format_sql: true # Format SQL statements for readability
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        ddl-auto: none
+        temp:
+          use_jdbc_metadata_defaults: false
+    jpa:
+      repositories:
+        enabled: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
