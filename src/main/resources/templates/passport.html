@@ -29,7 +29,7 @@
                             <th scope="col">PassportID</th>
                             <th scope="col">Start date</th>
                             <th scope="col">End date</th>
-                            <th scope="col">Approve</th>
+                            <th th:if="${#strings.equals(role, 'LUU_TRU')}" scope="col" class="text-center">Approval</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,9 +37,9 @@
                             <td th:text="${item.passportID}"></td>
                             <td th:text="${item.startDate}"></td>
                             <td th:text="${item.endDate}"></td>
-                            <td>
-                                <span th:if="${item.isXD == 1}">✓</span>
-                                <span th:if="${item.isXD == -1}">✗</span>
+                            <td th:if="${#strings.equals(role, 'LUU_TRU')}" class="text-center">
+                                <span th:if="${item.isXD == -1}" style="font-size: 24px; color: #dc3545;">✗</span>
+                                <span th:if="${item.isXD == 1}" style="font-size: 24px; color: #28a745;">✓</span>
                                 <span th:if="${item.isXD == 0}"></span>
                             </td>
                         </tr>

@@ -30,7 +30,7 @@ import java.util.UUID;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Controller
-    public class UserController {
+public class UserController {
     private final UserService userService;
     private final ResidentService residentService;
     private final PassportService passportService;

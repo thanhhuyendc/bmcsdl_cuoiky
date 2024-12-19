@@ -17,16 +17,17 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="#" target="__blank">Search</a>
-        <a class="nav-link" href="/user" target="__blank">Input</a>
-        <a class="nav-link" href="/login" target="__blank">Login</a>
-        <div class="form-control">
-            <form th:action="@{/user/search}">
-                <label for="search-keyword">Search passport</label>
-                <input name="keyword" id="search-keyword" type="text" class="form-control" placeholder="search">
-            </form>
-        </div>
+        <a class="nav-link active ms-0" href="#" target="__blank" style="margin-left: -15px !important;font-weight: bold; font-size: 18px;color: #080809;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#080809'">Search</a>
+        <a class="nav-link" href="/user" target="__blank" style="margin-left: -15px !important;font-weight: bold; font-size: 18px;color: #080809;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#080809'">Input</a>
+        <a class="nav-link" href="/login" target="__blank" style="margin-left: -15px !important;font-weight: bold; font-size: 18px;color: #080809;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#080809'">Login</a>
+
     </nav>
+    <div class="SEARCH">
+        <form th:action="@{/user/search}">
+            <label for="search-keyword" style="margin-bottom: 10px; margin-top: 20px;">Search passport</label>
+            <input name="keyword" id="search-keyword" type="text" class="form-control" placeholder="search">
+        </form>
+    </div>
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-12">

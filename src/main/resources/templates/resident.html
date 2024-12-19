@@ -37,7 +37,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="item: ${residents}">
-                            <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body" th:text="${item.fullName}"></a></td>
+                            <td><a href="#" class="text-body" th:text="${item.fullName}"></a></td>
                             <td>
                                 <span th:text="${item.gender}" class="badge badge-soft-info mb-0">Female</span>
                             </td>
