@@ -16,20 +16,16 @@
 <div class="container">
     <div class="row gutters">
         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
+            <div class="">
                 <div class="card-body">
                     <div class="account-settings">
                         <div class="user-profile">
                             <div class="user-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar">
+                                <img src="/img/passport_input.png" alt="img-passport" width="300" height="300">
                             </div>
-                            <h5 class="user-name">Yuki Hayashi</h5>
-                            <h6 class="user-email">yuki@Maxwell.com</h6>
+
                         </div>
-                        <div class="about">
-                            <h5>About</h5>
-                            <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful, and human experiences.</p>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -43,55 +39,50 @@
                     <div class="card-body">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                                <h6 class="mb-2 text-primary" style="font-weight: bold; font-size: 18px;color: #080809 !important;">Personal Details</h6>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input name="fullName" type="text" class="form-control" id="fullName" placeholder="Enter full name"
+                                    <label for="fullName" class="input-label">Full Name</label>
+                                    <input name="fullName" type="text" class="form-control bg-body-secondary" id="fullName" placeholder="Enter full name"
                                            th:value="${request?.fullName}" required>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="eMail">Email</label>
-                                    <input name="email" type="email" class="form-control" id="eMail" placeholder="Enter email ID"
+                                    <label for="eMail" class="input-label">Email</label>
+                                    <input name="email" type="email" class="form-control bg-body-secondary" id="eMail" placeholder="Enter email ID"
                                            th:value="${request?.email}">
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Enter phone number"
+                                    <label for="phone" class="input-label">Phone</label>
+                                    <input name="phone" type="text" class="form-control bg-body-secondary" id="phone" placeholder="Enter phone number"
                                            th:value="${request?.phone}" maxlength="11">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="website">CCCD/CMND</label>
-                                    <input name="CCCD" type="text" class="form-control" id="website" placeholder="Enter CCCD/CMND"
+                                    <label for="website" class="input-label">CCCD/CMND</label>
+                                    <input name="CCCD" type="text" class="form-control bg-body-secondary" id="website" placeholder="Enter CCCD/CMND"
                                            th:value="${request?.CCCD}" maxlength="12">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="gender">Select Gender:</label>
-                                    <select id="gender" name="gender" class="form-control">
+                                    <label for="gender" class="input-label">Select Gender:</label>
+                                    <select id="gender" name="gender" class="form-control  bg-body-secondary">
                                         <option value="Male" th:selected="${gender != null ? gender == 'Male' : false}">Male</option>
                                         <option value="Female" th:selected="${gender != null ? gender == 'Female' : false}">Female</option>
                                         <option value="None" th:selected="${gender != null ? gender == 'None' : false}">None</option>
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                            </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="items">Select District:</label>
-                                    <select id="items" name="locationId" class="form-control">
+                                    <label for="items" class="input-label">Select District:</label>
+                                    <select id="items" name="locationId" class="form-control  bg-body-secondary">
                                         <option th:each="item : ${locations}" th:value="${item.id}" th:text="${item.district}"
                                                 th:selected="${request?.locationId == item.id}"></option>
                                     </select>
@@ -101,24 +92,24 @@
                         </div>
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-right">
-                                    <button type="button" id="clear" class="btn btn-secondary">Clear</button>
-                                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-                                    <div th:if="${message != null}">
-                                        <div class="alert alert-warning" role="alert">
-                                            <p th:text="${message}"></p>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" id="clear" class="btn btn-secondary btn-outline me-3">Clear</button>
+                                    <button type="submit" id="submit" class="btn text-white" style="background: #004AAD;">Submit</button>
                                 </div>
                             </div>
                         </div>
                         <!-- Display success or failure message -->
+                        <div th:if="${message != null}">
+                            <div class="alert alert-warning mt-3" role="alert">
+                                <p th:text="${message}"></p>
+                            </div>
+                        </div>
                         <div th:if="${isSuccess != null}">
                             <div th:if="${isSuccess}" class="alert alert-success mt-3">
-                                Đăng ký thành công!
+                                Registration successful!
                             </div>
                             <div th:if="${!isSuccess}" class="alert alert-danger mt-3">
-                                Đăng ký thất bại!
+                                Registration failed!
                             </div>
                         </div>
                     </div>

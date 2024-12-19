@@ -14,13 +14,12 @@ body {
 .account-settings .user-profile .user-avatar {
     margin: 0 0 1rem 0;
 }
-.account-settings .user-profile .user-avatar img {
-    width: 90px;
-    height: 90px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    border-radius: 100px;
-}
+/*.account-settings .user-profile .user-avatar img {*/
+/*    width: 90px;*/
+/*    height: 90px;*/
+/*    -webkit-border-radius: 100px;*/
+/*    -moz-border-radius: 100px;*/
+/*}*/
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
 }
@@ -58,4 +57,8 @@ body {
     border-radius: 5px;
     border: 0;
     margin-bottom: 1rem;
+}
+
+.input-label {
+    margin-bottom: 6px;
 }
